@@ -15,7 +15,12 @@ public class FirstServlet extends HttpServlet {
 		res.setContentType("text/html");
 		PrintWriter out = res.getWriter();
 		
-		out.println("<h1>Hello, World!</h1>");
+//		out.println("<h1>Hello, World!</h1>");
+		out.println("<h1>Hello, " + req.getParameter("name") + "!</h1>");
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		doGet(req, res);
 	}
 
 }
