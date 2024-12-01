@@ -17,11 +17,9 @@ public class Cookies2 extends HttpServlet {
 		PrintWriter out = res.getWriter();
 		
 		Cookie[] ck = req.getCookies();
-		out.println("<table border='1'><thead><tr><th>Name</th><th>Value</th><tr></thead><tbody>");
-		for (int i = 0; i < ck.length; i++) {
-			out.println("<tr><td> " + ck[i].getName() + " </td><td> " + ck[i].getValue() + " </td>");
-		}
-		out.println("</tbody></table>");
+		out.println("Name: " + ck[0].getName() + "<br>Value: " + ck[0].getValue());
+		ck[0].setMaxAge(10);	//Delete your cookie
+		out.println("Age: " + ck[0].getMaxAge());
 	}
 
 }
