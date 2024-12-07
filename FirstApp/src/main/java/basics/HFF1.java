@@ -26,7 +26,7 @@ id:
 name:
 price:
 
-servlet1 -> show details (id readonly others are editable)
+servlet1 -> show details in an html form (id readonly others are editable)
 
 -> servlet2 -> final print
 
