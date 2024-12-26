@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.vc.bean.FoodItem;
 import com.vc.dao.FoodItemDao;
 
-@WebServlet("/additem")
+@WebServlet("/add")
 public class AddItem extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,6 +23,8 @@ public class AddItem extends HttpServlet {
 		FoodItem item = new FoodItem(name, description, price, status);
 		FoodItemDao foodItemDao = new FoodItemDao();
 		
-		foodItemDao.addFoodItem(item);
+		if (foodItemDao.addFoodItem(item)) {
+			res.sendRedirect(getServletContext().getContextPath() + "/list");
+		}
 	}
 }

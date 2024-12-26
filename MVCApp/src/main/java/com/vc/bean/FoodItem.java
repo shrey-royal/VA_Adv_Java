@@ -1,6 +1,7 @@
 package com.vc.bean;
 
 public class FoodItem {
+	int id;
 	String name;
 	String description;
 	double price;
@@ -8,11 +9,27 @@ public class FoodItem {
 	
 	public FoodItem() {}
 	
+	public FoodItem(int id, String name, String description, double price, boolean status) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.status = status;
+	}
+	
 	public FoodItem(String name, String description, double price, boolean status) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.status = status;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getName() {
