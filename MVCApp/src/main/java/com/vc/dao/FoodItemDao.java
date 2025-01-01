@@ -82,4 +82,74 @@ public class FoodItemDao {
 		}
 		return listItems;
 	}
+
+	public FoodItem getFoodItemById(int id) {
+		FoodItem item = null;
+		PreparedStatement p = null;
+		try {
+			sql = "SELECT * FROM hotel_menu WHERE item_id = ?";
+			conn = DBConn.getConnection();
+			p = conn.prepareStatement(sql);
+			p.setInt(1, id);
+			
+			ResultSet rs = p.executeQuery();
+			
+			if (rs.next()) {
+				item = new FoodItem(
+						id,
+						rs.getString("name"),
+						rs.getString("description"),
+						rs.getDouble("price"),
+						rs.getBoolean("status")
+				);
+				System.out.println("item fetched from the menu!");
+			} else {
+				System.out.println("Failed to fetch item from the menu!");
+			}
+		} catch (Exception e) {
+			System.out.println("Error: getFoodItemById() -> ");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				System.out.println("Error closing connection(getFoodItemById())");
+			}
+		}
+		return item;
+	}
+
+	public boolean updateFoodItem(FoodItem item) {
+		boolean flag = false;
+		try {
+			sql = "UPDATE hotel_menu SET name=?, description=?, price=?, status=? WHERE item_id = ?";
+			conn = DBConn.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(5, item.getId());
+			pstmt.setString(1, item.getName());
+			pstmt.setString(2, item.getDescription());
+			pstmt.setDouble(3, item.getPrice());
+			pstmt.setBoolean(4, item.isStatus());
+			
+			if (pstmt.executeUpdate() > 0) {
+				System.out.println("item updated to the menu!");
+				flag = true;
+			} else {
+				System.out.println("Failed to update an item in the menu!");
+			}
+			
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println("Error: updateFoodItem -> ");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				System.out.println("Error closing connection(updateFoodItem())");
+			}
+		}
+		return flag;
+	}
 }

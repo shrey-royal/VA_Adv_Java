@@ -27,6 +27,7 @@
                     <th>Description</th>
                     <th>Price</th>
                     <th>Availability</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                         <td>${item.description}</td>
                         <td>₹${item.price}</td>
                         <td>${item.status}</td>
+                        <td><a href="edit?id=${item.id}">Edit</a> | <a href="delete?id=${item.id}">Delete</a></td>
                     </tr>
                 </c:forEach>
             </tbody>
