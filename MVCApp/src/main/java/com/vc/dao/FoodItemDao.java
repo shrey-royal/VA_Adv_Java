@@ -152,4 +152,33 @@ public class FoodItemDao {
 		}
 		return flag;
 	}
+
+	public boolean deleteFoodItemById(int id) {
+		boolean flag = false;
+		try {
+			sql = "DELETE FROM hotel_menu WHERE item_id = ?";
+			conn = DBConn.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("Item deleted from the menu!");
+				flag = true;
+			} else {
+				System.out.println("Failed to delete item from the menu!");
+			}
+			
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println("Error: deleteFoodItemById() -> ");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				System.out.println("Error closing connection(deleteFoodItemById())");
+			}
+		}
+		return flag;
+	}
 }
