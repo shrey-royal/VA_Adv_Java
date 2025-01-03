@@ -9,9 +9,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Items</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <style>
         /* Navbar Styles */
         .navbar {
@@ -19,7 +19,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            background-color: #333;
+            background-color: #3f51b5;
             color: white;
         }
 
@@ -43,6 +43,7 @@
         .navbar ul li a {
             text-decoration: none;
             color: white;
+            font-weight: 500;
             transition: color 0.3s;
         }
 
@@ -52,22 +53,43 @@
 
         /* Page Content Styles */
         .list-container {
-            margin: 20px;
+            margin: 20px auto;
             padding: 20px;
-            background: #f5f5f5;
+            background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
         }
 
-        table.dataTable {
-            border-collapse: collapse;
-            border-spacing: 0;
+        table {
             width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
 
-        table.dataTable th, table.dataTable td {
+        th, td {
+            padding: 10px;
             text-align: left;
-            padding: 8px;
+        }
+
+        th {
+            background-color: #3f51b5;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        .mdl-button {
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -83,39 +105,38 @@
     </nav>
 
     <!-- List Container -->
-    <div class="list-container">
-        <h2>Menu Items</h2>
+    <div class="list-container mdl-shadow--2dp">
+        <h2 class="mdl-typography--headline">Menu Items</h2>
         <%
             ArrayList<FoodItem> items = (ArrayList<FoodItem>) request.getAttribute("items");
         %>
-        <table id="myTable" class="display row-border" style="width:100%">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Availability</th>
-                    <th>Actions</th>
+                    <th class="mdl-data-table__cell--non-numeric">Id</th>
+                    <th class="mdl-data-table__cell--non-numeric">Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Description</th>
+                    <th class="mdl-data-table__cell--non-numeric">Price</th>
+                    <th class="mdl-data-table__cell--non-numeric">Availability</th>
+                    <th class="mdl-data-table__cell--non-numeric">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="item" items="${items}">
                     <tr>
-                        <td>${item.id}</td>
-                        <td>${item.name}</td>
-                        <td>${item.description}</td>
-                        <td>₹${item.price}</td>
-                        <td>${item.status ? "Available" : "Unavailable" }</td>
-                        <td><a href="edit?id=${item.id}">Edit</a> | <a href="delete?id=${item.id}">Delete</a></td>
+                        <td class="mdl-data-table__cell--non-numeric">${item.id}</td>
+                        <td class="mdl-data-table__cell--non-numeric">${item.name}</td>
+                        <td class="mdl-data-table__cell--non-numeric">${item.description}</td>
+                        <td class="mdl-data-table__cell--non-numeric">₹${item.price}</td>
+                        <td class="mdl-data-table__cell--non-numeric">${item.status ? "Available" : "Unavailable" }</td>
+                        <td class="mdl-data-table__cell--non-numeric">
+                            <a class="mdl-button mdl-js-button mdl-button--primary" href="edit?id=${item.id}">Edit</a>
+                            <a class="mdl-button mdl-js-button mdl-button--accent" href="delete?id=${item.id}">Delete</a>
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
-
-    <script>
-        let table = new DataTable('#myTable');
-    </script>
 </body>
 </html>

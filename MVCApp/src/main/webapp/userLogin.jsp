@@ -42,7 +42,7 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">My App</span>
+                <span class="mdl-layout-title">Order Food</span>
                 <!-- Spacer to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
@@ -54,7 +54,7 @@
     </div>
 
     <div class="form-container mdl-shadow--2dp">
-        <form action="user/add" method="POST">
+        <form action="user/login" method="POST">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="username" name="username" required>
                 <label class="mdl-textfield__label" for="username">Username</label>

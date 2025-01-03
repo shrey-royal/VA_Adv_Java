@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List Food Items</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<% response.sendRedirect(getServletContext().getContextPath() + "/user/login"); %>
+
 </body>
 </html>
