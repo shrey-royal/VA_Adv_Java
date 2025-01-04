@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,12 +51,16 @@
                 <!-- Navigation -->
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link" href="user/list">List Food Items</a>
+                    <a class="mdl-navigation__link" href="userLogout.jsp">Logout</a>
                 </nav>
             </div>
         </header>
     </div>
 
     <div class="form-container mdl-shadow--2dp">
+    	
+    	<p style="color: red; font-weight: bold;"><%= (String) session.getAttribute("unameError") != null ? (String) session.getAttribute("unameError") : ""  %></p>
+    	
         <form action="user/login" method="POST">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" id="username" name="username" required>

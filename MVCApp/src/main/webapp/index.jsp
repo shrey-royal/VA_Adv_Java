@@ -7,6 +7,6 @@
 <title>List Food Items</title>
 </head>
 <body>
-	<% response.sendRedirect(getServletContext().getContextPath() + "/user/login"); %>
+	<% response.sendRedirect(getServletContext().getContextPath() + "/userLogin.jsp"); %>
 </body>
 </html>
