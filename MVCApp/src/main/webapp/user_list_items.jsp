@@ -9,9 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Items</title>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <style>
         /* Navbar Styles */
         .navbar {
@@ -58,24 +55,25 @@
             background: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 1200px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            font-size: 20px; /* Increased text size */
         }
 
         th, td {
             padding: 10px;
             text-align: left;
+            border: 1px solid #ccc; /* Added border for better visibility */
         }
 
         th {
             background-color: #3f51b5;
             color: white;
-            font-size: 1.2rem;
+            font-size: 22px;
             text-align: center;
         }
 
@@ -83,15 +81,61 @@
             background-color: #f5f5f5;
         }
 
-        .mdl-button {
-            margin: 0;
-        }
-
         h2 {
-            font-size: 2.5rem;
+            font-size: 28px; /* Made the header larger */
             text-align: center;
         }
+
+        input[type="text"] {
+            width: 50px;
+            text-align: center;
+            font-size: 16px; /* Increased input text size */
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .quantity-controls button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background-color: #3f51b5;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .quantity-controls button:hover {
+            background-color: #303f9f;
+        }
+
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 18px; /* Adjust font size for smaller screens */
+            }
+        }
     </style>
+
+    <script>
+        function increaseValue(id) {
+            const input = document.getElementById(id);
+            let currentValue = parseInt(input.value, 10);
+            input.value = currentValue + 1;
+        }
+
+        function decreaseValue(id) {
+            const input = document.getElementById(id);
+            let currentValue = parseInt(input.value, 10);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        }
+    </script>
 
 </head>
 <body>
@@ -106,37 +150,47 @@
     </nav>
 
     <!-- List Container -->
-    <div class="list-container mdl-shadow--2dp">
-        <h2 class="mdl-typography--headline">Menu Items</h2>
+    <div class="list-container">
+        <h2>Menu Items</h2>
         <%
             ArrayList<FoodItem> items = (ArrayList<FoodItem>) session.getAttribute("items");
         %>
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-            <thead>
-                <tr>
-                    <th style="color: white;" class="mdl-data-table__cell--non-numeric">Id</th>
-                    <th style="color: white;" class="mdl-data-table__cell--non-numeric">Name</th>
-                    <th style="color: white;" class="mdl-data-table__cell--non-numeric">Description</th>
-                    <th style="color: white;" class="mdl-data-table__cell--non-numeric">Price</th>
-                    <th style="color: white;" class="mdl-data-table__cell--non-numeric">Availability</th>
-                    <th style="color: white;" class="mdl-data-table__cell--non-numeric">Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="item" items="${items}">
-                    <tr>
-                        <td class="mdl-data-table__cell--non-numeric">${item.id}</td>
-                        <td class="mdl-data-table__cell--non-numeric">${item.name}</td>
-                        <td class="mdl-data-table__cell--non-numeric">${item.description}</td>
-                        <td class="mdl-data-table__cell--non-numeric">₹${item.price}</td>
-                        <td class="mdl-data-table__cell--non-numeric">${item.status ? "Available" : "Unavailable" }</td>
-                        <td class="mdl-data-table__cell--non-numeric">
-							<input type="number" value="0" min="0" style="width: 50px; text-align: center;" />
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+        <form action="user/confirmorder" method="POST">
+        <input type="hidden" name="item_size" value="${items.size()}">
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th>Id</th>
+	                    <th>Name</th>
+	                    <th>Description</th>
+	                    <th>Price</th>
+	                    <th>Availability</th>
+	                    <th>Quantity</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <c:forEach var="item" items="${items}">
+	                    <tr>
+	                        <td>${item.id}</td>
+	                        <td>${item.name}</td>
+	                        <td>${item.description}</td>
+	                        <td>₹${item.price}</td>
+	                        <td>${item.status ? "Available" : "Unavailable" }</td>
+	                        <td>
+	                            <div class="quantity-controls">
+	                                <button type="button" onclick="decreaseValue('quantity-${item.id}')">-</button>
+	                                <input type="text" id="quantity-${item.id}" name="qty_${item.id}" value="0" readonly />
+	                                <button type="button" onclick="increaseValue('quantity-${item.id}')">+</button>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </c:forEach>
+	            </tbody>
+	        </table>
+	        <button type="submit" style="margin-top: 20px; padding: 10px 20px; background-color: #3f51b5; color: white; font-size: 18px; border: none; border-radius: 5px; cursor: pointer;">
+		        Confirm Order
+		    </button>
+		</form>
     </div>
 </body>
 </html>
