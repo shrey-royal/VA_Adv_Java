@@ -182,6 +182,8 @@
 	                                <input type="text" id="quantity-${item.id}" name="qty_${item.id}" value="0" readonly />
 	                                <button type="button" onclick="increaseValue('quantity-${item.id}')">+</button>
 	                            </div>
+	                            <input type="hidden" name="price_${item.id}" value="${item.price}">
+                        		<input type="hidden" name="name_${item.id}" value="${item.name}">
 	                        </td>
 	                    </tr>
 	                </c:forEach>

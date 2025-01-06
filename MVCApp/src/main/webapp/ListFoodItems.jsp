@@ -99,8 +99,8 @@
         <div class="logo">MySite</div>
         <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">ListAllFoodItems</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="<%= application.getContextPath() + "/list" %>">ListAllFoodItems</a></li>
+            <li><a href="userLogout.jsp">Logout</a></li>
         </ul>
     </nav>
 
