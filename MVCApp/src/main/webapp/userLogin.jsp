@@ -51,6 +51,7 @@
                 <!-- Navigation -->
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link" href="user/list">List Food Items</a>
+                    <a class="mdl-navigation__link" href="createUser.jsp">Signup</a>
                     <a class="mdl-navigation__link" href="userLogout.jsp">Logout</a>
                 </nav>
             </div>

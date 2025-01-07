@@ -42,12 +42,13 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">My App</span>
+                <span class="mdl-layout-title">Order Food</span>
                 <!-- Spacer to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation -->
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link" href="user/list">List Food Items</a>
+                    <a class="mdl-navigation__link" href="userLogin.jsp">Login</a>
                     <a class="mdl-navigation__link" href="userLogout.jsp">Logout</a>
                 </nav>
             </div>

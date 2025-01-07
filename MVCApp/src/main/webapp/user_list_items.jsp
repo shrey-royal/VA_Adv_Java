@@ -141,7 +141,7 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo">MySite</div>
+        <div class="logo">Order Food</div>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">ListAllFoodItems</a></li>

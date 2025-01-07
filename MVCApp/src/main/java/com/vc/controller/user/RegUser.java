@@ -21,7 +21,8 @@ public class RegUser extends HttpServlet {
 		UserDao dao = new UserDao();
 		
 		if (dao.addUser(bean)) {
-			res.sendRedirect(getServletContext().getContextPath() + "/user/login");
+//			res.sendRedirect(getServletContext().getContextPath() + "/user/login");
+			req.getRequestDispatcher("login").forward(req, res);
 		} else {
 			res.sendRedirect(getServletContext().getContextPath() + "/createUser.jsp");
 		}

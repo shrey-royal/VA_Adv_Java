@@ -32,5 +32,10 @@ public class LoginUser extends HttpServlet {
 			res.sendError(401, "Username or Password Error!");
 		}
 	}
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
 
 }
