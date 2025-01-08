@@ -16,7 +16,7 @@ public class FoodItemDao {
 	public boolean addFoodItem(FoodItem item) {
 		boolean flag = false;
 		try {
-			sql = "INSERT INTO hotel_menu(name, description, price, status) VALUES(?, ?, ?, ?)";
+			sql = "INSERT INTO hotel_menu(name, description, price, status, image_url) VALUES(?, ?, ?, ?, ?)";
 			conn = DBConn.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
@@ -24,6 +24,7 @@ public class FoodItemDao {
 			pstmt.setString(2, item.getDescription());
 			pstmt.setDouble(3, item.getPrice());
 			pstmt.setBoolean(4, item.isStatus());
+			pstmt.setString(5, item.getImage_url());
 			
 			if (pstmt.executeUpdate() > 0) {
 				System.out.println("New item added to the menu!");
@@ -62,7 +63,8 @@ public class FoodItemDao {
 									rs.getString("name"),
 									rs.getString("description"),
 									rs.getDouble("price"),
-									rs.getBoolean("status")
+									rs.getBoolean("status"),
+									rs.getString("image_url")
 							)
 					);
 				}
@@ -100,7 +102,8 @@ public class FoodItemDao {
 						rs.getString("name"),
 						rs.getString("description"),
 						rs.getDouble("price"),
-						rs.getBoolean("status")
+						rs.getBoolean("status"),
+						rs.getString("image_url")
 				);
 				System.out.println("item fetched from the menu!");
 			} else {
@@ -122,15 +125,16 @@ public class FoodItemDao {
 	public boolean updateFoodItem(FoodItem item) {
 		boolean flag = false;
 		try {
-			sql = "UPDATE hotel_menu SET name=?, description=?, price=?, status=? WHERE item_id = ?";
+			sql = "UPDATE hotel_menu SET name=?, description=?, price=?, status=?, image_url=? WHERE item_id = ?";
 			conn = DBConn.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(5, item.getId());
+			pstmt.setInt(6, item.getId());
 			pstmt.setString(1, item.getName());
 			pstmt.setString(2, item.getDescription());
 			pstmt.setDouble(3, item.getPrice());
 			pstmt.setBoolean(4, item.isStatus());
+			pstmt.setString(5, item.getImage_url());
 			
 			if (pstmt.executeUpdate() > 0) {
 				System.out.println("item updated to the menu!");

@@ -6,22 +6,25 @@ public class FoodItem {
 	String description;
 	double price;
 	boolean status;
+	String image_url;
 	
 	public FoodItem() {}
 	
-	public FoodItem(int id, String name, String description, double price, boolean status) {
+	public FoodItem(int id, String name, String description, double price, boolean status, String image_url) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.status = status;
+		this.image_url = image_url;
 	}
 	
-	public FoodItem(String name, String description, double price, boolean status) {
+	public FoodItem(String name, String description, double price, boolean status, String image_url) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.status = status;
+		this.image_url = image_url;
 	}
 	
 	public int getId() {
@@ -55,5 +58,13 @@ public class FoodItem {
 	}
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	public String getImage_url() {
+		return image_url;
+	}
+
+	public void setImage_url(String image_url) {
+		this.image_url = image_url;
 	}
 }
