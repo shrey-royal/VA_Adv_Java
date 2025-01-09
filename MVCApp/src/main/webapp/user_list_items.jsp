@@ -85,6 +85,12 @@
             font-size: 28px; /* Made the header larger */
             text-align: center;
         }
+        
+        img {
+        	max-width: 100px;
+        	height: auto;
+        	border-radius: 5px;
+        }
 
         input[type="text"] {
             width: 50px;
@@ -161,6 +167,7 @@
 	            <thead>
 	                <tr>
 	                    <th>Id</th>
+	                    <th>Image</th>
 	                    <th>Name</th>
 	                    <th>Description</th>
 	                    <th>Price</th>
@@ -172,6 +179,7 @@
 	                <c:forEach var="item" items="${items}">
 	                    <tr>
 	                        <td>${item.id}</td>
+	                        <td><img src="${item.image_url}" alt="${item.name}"></td>
 	                        <td>${item.name}</td>
 	                        <td>${item.description}</td>
 	                        <td>₹${item.price}</td>

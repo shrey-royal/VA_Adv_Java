@@ -18,6 +18,13 @@
             align-items: center;
             height: 100vh;
         }
+        
+        img {
+        	max-width: 100px;
+        	height: auto;
+        	border-radius: 5px;
+        }
+        
         .form-container {
             background: #ffffff;
             padding: 20px 40px;
@@ -26,20 +33,24 @@
             max-width: 400px;
             width: 100%;
         }
+        
         .form-container h2 {
             margin-bottom: 20px;
             color: #333333;
             text-align: center;
         }
+        
         .form-group {
             margin-bottom: 15px;
         }
+        
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
             color: #555555;
         }
+        
         .form-group input,
         .form-group textarea,
         .form-group select {
@@ -49,9 +60,11 @@
             border-radius: 5px;
             font-size: 14px;
         }
+        
         .form-group textarea {
             resize: vertical;
         }
+        
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
@@ -59,6 +72,7 @@
             outline: none;
             box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
         }
+        
         .form-group button {
             width: 100%;
             padding: 10px;
@@ -69,6 +83,7 @@
             font-size: 16px;
             cursor: pointer;
         }
+        
         .form-group button:hover {
             background-color: #0056b3;
         }
@@ -78,7 +93,7 @@
 	<% FoodItem item = (FoodItem) request.getAttribute("item"); %>
     <div class="form-container">
         <h2>Add New Menu Item</h2>
-        <form action="update" method="POST">
+        <form action="update" method="POST" enctype="multipart/form-data">
         	<input type="hidden" name="id" value="${item.id}">
             <div class="form-group">
                 <label for="name">Item Name</label>
@@ -101,6 +116,12 @@
                     <option value="1" selected>Available</option>
                     <option value="0">Unavailable</option>
                 </select>
+            </div>
+            
+            <div class="form-group">
+            	<img alt="${item.name}" src="${item.image_url}">
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
 
             <div class="form-group">

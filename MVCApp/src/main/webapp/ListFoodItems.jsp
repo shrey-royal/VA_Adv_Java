@@ -91,6 +91,18 @@
             font-size: 2.5rem;
             text-align: center;
         }
+        
+        img {
+        	max-width: 100px;
+        	height: auto;
+        	border-radius: 5px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 18px; /* Adjust font size for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
@@ -114,6 +126,7 @@
             <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">Id</th>
+                    <th class="mdl-data-table__cell--non-numeric">Image</th>
                     <th class="mdl-data-table__cell--non-numeric">Name</th>
                     <th class="mdl-data-table__cell--non-numeric">Description</th>
                     <th class="mdl-data-table__cell--non-numeric">Price</th>
@@ -125,6 +138,7 @@
                 <c:forEach var="item" items="${items}">
                     <tr>
                         <td class="mdl-data-table__cell--non-numeric">${item.id}</td>
+                        <td class="mdl-data-table__cell--non-numeric"><img src="${item.image_url}" alt="${item.name}"></td>
                         <td class="mdl-data-table__cell--non-numeric">${item.name}</td>
                         <td class="mdl-data-table__cell--non-numeric">${item.description}</td>
                         <td class="mdl-data-table__cell--non-numeric">₹${item.price}</td>
